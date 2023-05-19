@@ -8,13 +8,14 @@ export const stringCalculator=():propTypes=>{
       sum: (input: string, separator: string = ','): number => {
        // function implementation
        const statement=input.trim()
-       const[first,second]=statement.split(separator)
 
-       if(!first || !second) return 0
+       const[...all]=statement.split(separator)
 
-       if(isNaN(Number(first))||  isNaN(Number(first))) return 0
+       const allNumbers = all.filter(v => !isNaN(Number(v)) ).map( v=> Number(v))
 
-       return Number(first)+Number(second)       
+       if(allNumbers.length<=1) return 0
+      
+       return allNumbers.reduce((result,value)=>result+value,0)
       } 
     }
     
