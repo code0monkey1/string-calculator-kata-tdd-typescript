@@ -13,7 +13,7 @@ describe('stringCalculator',()=>{
     describe('should give the sum if 2 numbers are separated by comma', () => { 
         
     test.each([{input:"2,4",expected:6}, {input:"5,10",expected:15}, {input:"1,1",expected:2}])(
-    "returns the sum of two numbers in a string",
+   ' the sum of $input is $expected',
     ({ input, expected }) => {
 
         const sut=stringCalculator()
@@ -27,7 +27,7 @@ describe('stringCalculator',()=>{
       describe('should return -1 if 1 or both numbers are missing', () => { 
         
     test.each([{input:"2,",expected:0}, {input:",10",expected:0}, {input:",",expected:0}])(
-    "returns the sum of two numbers in a string",
+    ' the sum of $input is $expected',
     ({ input, expected }) => {
 
         const sut=stringCalculator()
@@ -41,7 +41,7 @@ describe('stringCalculator',()=>{
         describe('should return -1 if 1 or both numbers are missing', () => { 
         
           test.each([{input:"2,",expected:0}, {input:",10",expected:0}, {input:",",expected:0}])(
-          "returns the sum of two numbers in a string",
+         ' the sum of $input is $expected',
           ({ input, expected }) => {
 
               const sut=stringCalculator()
@@ -51,6 +51,22 @@ describe('stringCalculator',()=>{
               }
         );
      })
+
+    describe('should give the sum if 3 numbers are separated by comma', () => {
+      test.each([
+        { input: '1,2,3', expected: 6 },
+        // { input: '5,10,15', expected: 30 },
+        // { input: '2,4,6', expected: 12 },
+      ])(
+        ' the sum of $input is $expected',
+        ({ input, expected }) => {
+          const sut = stringCalculator();
+          const separator = ',';
+          expect(sut.sum(input, separator)).toBe(expected);
+        }
+      );
+
+});
         
         
      
