@@ -60,8 +60,27 @@ describe('stringCalculator',()=>{
       ])(
         ' the sum of $input is $expected',
         ({ input, expected }) => {
+          //Arrange
           const sut = stringCalculator();
           const separator = ',';
+
+          //
+          expect(sut.sum(input, separator)).toBe(expected);
+        }
+      );
+
+});
+
+    describe('should give the sum if numbers are separated by newline characters', () => {
+      test.each([
+        { input: '1\n2\n3', expected: 6 },
+        { input: '5\n10\n15', expected: 30 },
+        { input: '2\n4\n6', expected: 12 },
+      ])(
+        'returns the sum of numbers separated by newline characters',
+        ({ input, expected }) => {
+          const sut = stringCalculator();
+          const separator = '\n';
           expect(sut.sum(input, separator)).toBe(expected);
         }
       );
