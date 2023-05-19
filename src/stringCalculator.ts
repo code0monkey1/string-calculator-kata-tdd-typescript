@@ -1,11 +1,11 @@
 interface propTypes{
-  sum:(input:string,separator:string)=>number
+  sum:(input:string,separator?:string)=>number
 }
 
 export const stringCalculator=():propTypes=>{
    
     return {
-      sum:(input:string,separator:string):number=>{
+      sum:(input:string,separator:?string):number=>{
        
        const statement=input.trim()
        const[first,second]=statement.split(separator)
