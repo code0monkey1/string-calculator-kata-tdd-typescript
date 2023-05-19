@@ -5,8 +5,8 @@ interface propTypes{
 export const stringCalculator=():propTypes=>{
    
     return {
-      sum:(input:string,separator:?string):number=>{
-       
+      sum: (input: string, separator: string = ','): number => {
+       // function implementation
        const statement=input.trim()
        const[first,second]=statement.split(separator)
 
