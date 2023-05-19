@@ -9,15 +9,17 @@ export const stringCalculator=():propTypes=>{
        // function implementation
        const statement=input.trim()
 
-       const[...all]=statement.split(separator)
+       const allInput=statement.split(separator)
 
-       const allNumbers = all.filter(v => v && !isNaN(Number(v)) && Number(v)<1000 ).map(Number)
+       const allNumbers = allInput.filter(v => v && !isNaN(Number(v)) && Number(v)<1000 ).map(Number)
 
        if(allNumbers.some(v => v<0)) throw Error('Negatives not allowed')
 
        if(allNumbers.length<=1) return 0
+
+       const sum = allNumbers.reduce((result,value)=>result+value)
       
-       return allNumbers.reduce((result,value)=>result+value,)
+       return sum
       } 
     }
     
