@@ -27,7 +27,7 @@ describe('stringCalculator',()=>{
 
       describe('should return -1 if 1 or both numbers are missing', () => { 
         
-    test.each([{input:"2,",expected:0}, {input:",10",expected:0}, {input:",",expected:0}])(
+    test.each([{input:"2,",expected:2}, {input:",10",expected:10}, {input:",",expected:0}])(
     ' the sum of $input is $expected',
     ({ input, expected }) => {
 
