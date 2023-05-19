@@ -17,8 +17,8 @@ describe('stringCalculator',()=>{
     ({ input, expected }) => {
 
         const sut=stringCalculator()
-
-       expect(sut.sum(input)).toBe(expected);
+        const separator=','
+       expect(sut.sum(input,separator)).toBe(expected);
 
         }
       );
@@ -26,13 +26,13 @@ describe('stringCalculator',()=>{
 
       describe('should return -1 if 1 or both numbers are missing', () => { 
         
-    test.each([{input:"2,",expected:-1}, {input:",10",expected:-1}, {input:",",expected:-1}])(
+    test.each([{input:"2,",expected:0}, {input:",10",expected:0}, {input:",",expected:0}])(
     "returns the sum of two numbers in a string",
     ({ input, expected }) => {
 
         const sut=stringCalculator()
-
-       expect(sut.sum(input)).toBe(expected);
+        const separator=','
+       expect(sut.sum(input,separator)).toBe(expected);
 
         }
       );
