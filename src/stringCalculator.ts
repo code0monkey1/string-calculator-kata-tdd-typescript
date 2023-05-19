@@ -15,9 +15,9 @@ export const stringCalculator=():propTypes=>{
 
        if(allNumbers.some(v => v<0)) throw Error('Negatives not allowed')
 
-       const sum = allNumbers.reduce((result,value)=>result+value)
+       const _sum = allNumbers.reduce((result,value)=>result+value,0)
       
-       return sum
+       return _sum
       } 
     }
     

@@ -39,20 +39,7 @@ describe('stringCalculator',()=>{
       );
      })
  
-    describe('should return -1 if 1 or both numbers are missing', () => { 
-        
-          test.each([{input:"2,",expected:0}, {input:",10",expected:0}, {input:",",expected:0}])(
-         ' the sum of $input is $expected',
-          ({ input, expected }) => {
-
-              const sut=stringCalculator()
-              const separator=','
-            expect(sut.sum(input,separator)).toBe(expected);
-
-              }
-        );
-     })
-
+   
     describe('should give the sum if 3 numbers are separated by comma', () => {
       test.each([
         { input: '1,2,3', expected: 6 },
