@@ -11,11 +11,11 @@ export const stringCalculator=():propTypes=>{
 
        const[...all]=statement.split(separator)
 
-       const allNumbers = all.filter(v => !isNaN(Number(v)) ).map( v=> Number(v))
+       const allNumbers = all.filter(v => v && !isNaN(Number(v)) ).map(Number)
 
        if(allNumbers.length<=1) return 0
       
-       return allNumbers.reduce((result,value)=>result+value,0)
+       return allNumbers.reduce((result,value)=>result+value,)
       } 
     }
     
