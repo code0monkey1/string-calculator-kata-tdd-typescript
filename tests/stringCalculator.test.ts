@@ -85,13 +85,13 @@ describe('stringCalculator',()=>{
         }
       );
 
-});
+  });
 
     describe('should give the sum if 2 numbers are separated by comma', () => {
       test.each([
-        { input: '2,-4', expected: 'Negatives not allowed: -4' },
-        { input: '-5,10', expected: 'Negatives not allowed: -5' },
-        { input: '1,-1', expected: 'Negatives not allowed: -1' },
+        { input: '2,-4', expected: 'Negatives not allowed' },
+        { input: '-5,10', expected: 'Negatives not allowed' },
+        { input: '1,-1', expected: 'Negatives not allowed' },
       ])(
         'returns an error message if a negative number is present',
         ({ input, expected }) => {

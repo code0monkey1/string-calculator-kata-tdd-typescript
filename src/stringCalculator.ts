@@ -11,7 +11,9 @@ export const stringCalculator=():propTypes=>{
 
        const[...all]=statement.split(separator)
 
-       const allNumbers = all.filter(v => v && !isNaN(Number(v)) ).map(Number)
+       const allNumbers = all.filter(v => v && !isNaN(Number(v)) && Number(v)<1000 ).map(Number)
+
+       if(allNumbers.some(v => v<0)) throw Error('Negatives not allowed')
 
        if(allNumbers.length<=1) return 0
       
