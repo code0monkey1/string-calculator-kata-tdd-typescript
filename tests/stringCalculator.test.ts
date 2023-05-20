@@ -18,8 +18,8 @@ describe('stringCalculator',()=>{
     ({ input, expected }) => {
 
         const sut=stringCalculator()
-        const separator=','
-       expect(sut.sum(input,separator)).toBe(expected);
+
+       expect(sut.sum(input)).toBe(expected);
 
         }
       );
@@ -32,8 +32,8 @@ describe('stringCalculator',()=>{
     ({ input, expected }) => {
 
         const sut=stringCalculator()
-        const separator=','
-       expect(sut.sum(input,separator)).toBe(expected);
+ 
+       expect(sut.sum(input)).toBe(expected);
 
         }
       );
@@ -50,10 +50,9 @@ describe('stringCalculator',()=>{
         ({ input, expected }) => {
           //Arrange
           const sut = stringCalculator();
-          const separator = ',';
 
           //
-          expect(sut.sum(input, separator)).toBe(expected);
+          expect(sut.sum(input)).toBe(expected);
         }
       );
 
@@ -68,8 +67,7 @@ describe('stringCalculator',()=>{
         'returns the sum of numbers separated by newline characters',
         ({ input, expected }) => {
           const sut = stringCalculator();
-          const separator = '\n';
-          expect(sut.sum(input, separator)).toBe(expected);
+          expect(sut.sum(input)).toBe(expected);
         }
       );
 
@@ -84,12 +82,60 @@ describe('stringCalculator',()=>{
         'returns an error message if a negative number is present',
         ({ input, expected }) => {
           const sut = stringCalculator();
-          const separator = ',';
-          expect(() => sut.sum(input, separator)).toThrow(expected);
+
+          expect(() => sut.sum(input)).toThrow(expected);
         }
       );
       
-});
+  });
+  
+  describe(`if the string starts with custom delimeter "//{delimeter}\n{numbers...}"`,()=>{
+    
+   test.each([
+        { input: '//?\n2?4', expected: 6 },
+        { input: '//(\n5(10', expected: 15},
+        { input: '//}\n1}1', expected: 2},
+      ])(
+        '$input return $expected',
+        ({ input, expected }) => {
+          const sut = stringCalculator();
+       
+          expect( sut.sum(input)).toBe(expected);
+        }
+      );
+        
+       
+
+
+  })
+
+
+  // test('learning test',()=>{
+     
+  //    expect('1\n2,3'.split(/[\n,]/)).toStrictEqual(["1","2","3"])
+
+  // })
+
+  // test('learing test',()=>{
+  //     let input="2,3\n4"
+      
+  //     let delimiters=',\n';
+      
+
+  //     if(input.startsWith('//')){
+
+  //       input=input.replace('//','')
+
+  //       delimiters=input[0]
+
+  //       input= input.slice(2,)
+        
+  //     }
+      
+  //     const  arr = input.split(new RegExp(`[${delimiters}]`, "g"));
+
+  //       expect(arr).toStrictEqual(["2","3","4"])
+  // })  
         
 
 })
