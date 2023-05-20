@@ -3,32 +3,32 @@ interface propTypes{
 }
 
 export const stringCalculator=():propTypes=>{
-   
+
+
     return {
       sum: (input: string): number => {
-       // function implementation
 
-       const isDelimeteredInput= input.startsWith('//')
-       let delimiters=',\n';
+       let delimiters:string|RegExp=/,|\n/
       
-        if(isDelimeteredInput){
+       if(hasCustomDelimiter(input)){
 
-          input=input.replace('//','')
+          delimiters= extractCustomDelimiter(input)
 
-          delimiters=input[0]
-
-          input= input.slice(2,)
+          input= extractStringToBeParsed(input)
 
         }
-
        
-       const allInput = input.split(new RegExp(`[${delimiters}]`, "g"));
-    
-       const allNumbers = allInput
-                                  .filter(v => v && !isNaN(Number(v)) && Number(v)<1000 )
-                                  .map(Number)
+       const splitInput:string[] = input.split(delimiters);
 
-       if(allNumbers.some(v => v<0)) throw Error('Negatives not allowed')
+       const allNumbers = parseNumbers(splitInput)
+
+       if(hasNegativeNumber(allNumbers)) {
+
+          const allNegativeNumbers = allNumbers.filter(num => num<0)
+
+          throw 'Negative numbers are not allowed: ' + allNegativeNumbers.join(',');;
+          
+        }
 
        const _sum = allNumbers.reduce((result,value)=>result+value,0)
       
@@ -37,3 +37,36 @@ export const stringCalculator=():propTypes=>{
     }
     
 }
+function parseNumbers(splitInput: string[]) {
+  
+  const LARGE_NUMBER=1000
+
+  return splitInput
+                  .filter(v => v && !isNaN(Number(v)))
+                  .map(Number)
+                  .filter(v=> Number(v) <= LARGE_NUMBER)
+}
+
+function hasNegativeNumber(allNumbers: number[]) {
+  return allNumbers.some(v => v < 0)
+}
+
+function extractStringToBeParsed(input: string): string {
+
+  const STRING_START_INDEX=4
+
+  return input.slice(STRING_START_INDEX)
+
+}
+
+function extractCustomDelimiter(input: string): string | RegExp {
+
+  const DELIMITER_INDEX=2
+
+  return input[DELIMITER_INDEX]
+}
+
+function hasCustomDelimiter(input: string) {
+  return input.startsWith('//')
+}
+
