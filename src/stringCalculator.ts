@@ -64,6 +64,7 @@ function extractCustomDelimiter(input: string): string | RegExp {
   const DELIMITER_INDEX=2
 
   return input[DELIMITER_INDEX]
+  
 }
 
 function hasCustomDelimiter(input: string) {
